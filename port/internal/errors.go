@@ -12,6 +12,7 @@ const (
 	InvalidTimezone    DomainErrorCode = "InvalidTimezone"
 	InvalidProvince    DomainErrorCode = "InvalidProvince"
 	InvalidCity        DomainErrorCode = "InvalidCity"
+	CodeNotProvided    DomainErrorCode = "CodeNotProvided"
 )
 
 type DomainError struct {

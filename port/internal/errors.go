@@ -5,9 +5,10 @@ import "fmt"
 type DomainErrorCode string
 
 const (
-	InvalidUNLOC   DomainErrorCode = "InvalidUNLOC"
-	InvalidCountry DomainErrorCode = "InvalidCountry"
-	InvalidName    DomainErrorCode = "InvalidName"
+	InvalidUNLOC       DomainErrorCode = "InvalidUNLOC"
+	InvalidCountry     DomainErrorCode = "InvalidCountry"
+	InvalidName        DomainErrorCode = "InvalidName"
+	InvalidCoordinates DomainErrorCode = "InvalidCoordinates"
 )
 
 type DomainError struct {

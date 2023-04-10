@@ -11,6 +11,7 @@ const (
 	InvalidCoordinates DomainErrorCode = "InvalidCoordinates"
 	InvalidTimezone    DomainErrorCode = "InvalidTimezone"
 	InvalidProvince    DomainErrorCode = "InvalidProvince"
+	InvalidCity        DomainErrorCode = "InvalidCity"
 )
 
 type DomainError struct {

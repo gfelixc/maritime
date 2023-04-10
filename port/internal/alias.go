@@ -15,3 +15,7 @@ func (vo Alias) String() string {
 }
 
 type AliasCollection []Alias
+
+func EmptyAliasCollection() AliasCollection {
+	return []Alias{}
+}

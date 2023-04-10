@@ -15,3 +15,7 @@ func (vo Region) String() string {
 }
 
 type RegionCollection []Region
+
+func EmptyRegionCollection() RegionCollection {
+	return []Region{}
+}

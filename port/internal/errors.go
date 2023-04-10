@@ -7,6 +7,7 @@ type DomainErrorCode string
 const (
 	InvalidUNLOC   DomainErrorCode = "InvalidUNLOC"
 	InvalidCountry DomainErrorCode = "InvalidCountry"
+	InvalidName    DomainErrorCode = "InvalidName"
 )
 
 type DomainError struct {

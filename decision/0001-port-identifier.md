@@ -36,7 +36,7 @@ and finally unlock the PortRepository.
 
 ### C. UNLOC as port identifier + CreateUpdate action
 
-Using an explicit naming as CreateUpdate will be an accurate reflect of the action to perform.
+Using an explicit naming as CreateUpdate will be an accurate description of the action to perform.
 
 ✅Port model accuracy with business
 ❌Evolving the application beyond CRUD will require to replace this solution

@@ -48,3 +48,7 @@ func NewPort(
 		code,
 	}, nil
 }
+
+func (p *Port) UNLOC() UNLOC {
+	return p.unloc
+}

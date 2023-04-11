@@ -19,3 +19,7 @@ type RegionCollection []Region
 func EmptyRegionCollection() RegionCollection {
 	return []Region{}
 }
+
+func NewRegionCollection(region ...Region) RegionCollection {
+	return region
+}

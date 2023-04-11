@@ -19,3 +19,7 @@ type AliasCollection []Alias
 func EmptyAliasCollection() AliasCollection {
 	return []Alias{}
 }
+
+func NewAliasCollection(alias ...Alias) AliasCollection {
+	return alias
+}

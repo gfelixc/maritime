@@ -22,6 +22,10 @@ type DomainError struct {
 	wrapped error
 }
 
+func (e *DomainError) Code() DomainErrorCode {
+	return e.code
+}
+
 func (e *DomainError) Error() string {
 	return fmt.Sprintf("[%s] - %s", e.code, e.message)
 }

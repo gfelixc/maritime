@@ -25,16 +25,18 @@ func TestPortsDataParser(t *testing.T) {
 		require.Equal(t, []string{}, port.Regions)
 		require.Equal(t, []float64{55.5136433, 25.4052165}, port.Coordinates)
 		require.Equal(t, "Ajman", *port.Province)
-		require.Equal(t, "Asia/Dubai", port.Timezone)
+		require.Equal(t, "Asia/Dubai", *port.Timezone)
 		require.Equal(t, []string{"AEAJM"}, port.Unlocs)
 		require.Equal(t, "52000", *port.Code)
 	})
 
-	t.Run("Should parse missing Code from AEAUH as nil", func(t *testing.T) {
+	t.Run("Should parse missing fields from AEAUH as nil", func(t *testing.T) {
 		port, err := parser.NextPort()
 
 		require.NoError(t, err)
 		require.Equal(t, "AEAUH", port.FieldName)
+		require.Equal(t, (*string)(nil), port.Province)
+		require.Equal(t, (*string)(nil), port.Timezone)
 		require.Equal(t, (*string)(nil), port.Code)
 	})
 
@@ -70,11 +72,9 @@ var inMemoryPortsData = `{
       24.47
     ],
     "city": "Abu Dhabi",
-    "province": "Abu Z¸aby [Abu Dhabi]",
     "country": "United Arab Emirates",
     "alias": [],
     "regions": [],
-    "timezone": "Asia/Dubai",
     "unlocs": [
       "AEAUH"
     ]

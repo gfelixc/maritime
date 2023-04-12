@@ -103,8 +103,9 @@ func TestCreatePort(t *testing.T) {
 		t.Run("InvalidTimezone", func(t *testing.T) {
 			var expectedError *internal.DomainError
 
+			tz := "Dubai"
 			test_case := stubCreatePortCommand()
-			test_case.Timezone = "Dubai"
+			test_case.Timezone = &tz
 			err := usecase.Create(context.TODO(), test_case)
 
 			require.ErrorAs(t, err, &expectedError)
@@ -126,6 +127,7 @@ func TestCreatePort(t *testing.T) {
 }
 
 func stubCreatePortCommand() CreateUpdatePortCommand {
+	timezone := "Asia/Dubai"
 	province := "Ajman"
 	code := "52000"
 
@@ -139,7 +141,7 @@ func stubCreatePortCommand() CreateUpdatePortCommand {
 		55.5136433,
 		25.4052165,
 		&province,
-		"Asia/Dubai",
+		&timezone,
 		[]string{
 			"AEAJM",
 		},

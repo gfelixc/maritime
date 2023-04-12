@@ -24,7 +24,7 @@ type CreateUpdatePortCommand struct {
 	CoordinatesLongitude float64
 	CoordinatesLatitude  float64
 	Province             *string
-	Timezone             string
+	Timezone             *string
 	UNLOCS               []string
 	Code                 *string
 }
@@ -86,9 +86,12 @@ func (uc CreateUpdatePort) Create(
 		}
 	}
 
-	domainTimezone, err := internal.NewTimezone(command.Timezone)
-	if err != nil {
-		return err
+	domainTimezone := internal.NoTimezone()
+	if command.Timezone != nil {
+		domainTimezone, err = internal.NewTimezone(*command.Timezone)
+		if err != nil {
+			return err
+		}
 	}
 
 	var unlocsSlice []internal.UNLOC

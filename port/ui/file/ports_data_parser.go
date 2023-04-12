@@ -73,7 +73,7 @@ type Port struct {
 	Regions     []string
 	Coordinates []float64
 	Province    *string
-	Timezone    string
+	Timezone    *string
 	Unlocs      []string
 	Code        *string
 }

@@ -10,6 +10,10 @@ type CreateUpdatePort struct {
 	repository internal.Repository
 }
 
+func NewCreateUpdatePort(repository internal.Repository) *CreateUpdatePort {
+	return &CreateUpdatePort{repository: repository}
+}
+
 type CreateUpdatePortCommand struct {
 	UNLOC                string
 	Name                 string

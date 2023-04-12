@@ -4,6 +4,7 @@
 make init
 go install github.com/vektra/mockery/v2@v2.20.0
 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.52.2
+GOBIN=/usr/local/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 ```
 
 # Assumptions

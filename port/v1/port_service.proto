@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package port.v1;
+
+option go_package = "portv1";
+
+service PortDomainService {
+  rpc CreateOrUpdateFromPortsDataFile(CreateOrUpdateFromPortsDataFileRequest) returns (CreateOrUpdateFromPortsDataFileResponse);
+}
+
+message CreateOrUpdateFromPortsDataFileRequest {
+  string filename = 1;
+}
+
+message CreateOrUpdateFromPortsDataFileResponse {
+  uint32 ports_processed = 1;
+  uint32 ports_succeeded = 2;
+  uint32 ports_failed = 3;
+  repeated string errors = 4;
+}

@@ -1,7 +1,15 @@
 package internal
 
+const provinceNotProvided = "provinceNotProvided"
+
 type Province struct {
 	value string
+}
+
+func NoProvince() Province {
+	return Province{
+		value: provinceNotProvided,
+	}
 }
 
 func NewProvince(value string) (Province, error) {
@@ -14,6 +22,13 @@ func NewProvince(value string) (Province, error) {
 	}, nil
 }
 
-func (vo Province) String() string {
-	return vo.value
+func (vo Province) String() (string, error) {
+	if vo.value == provinceNotProvided {
+		return "", NewDomainError(
+			ProvinceNotProvided,
+			"province not provided",
+		)
+	}
+
+	return vo.value, nil
 }

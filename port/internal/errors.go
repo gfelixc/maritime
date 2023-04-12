@@ -13,6 +13,7 @@ const (
 	InvalidProvince        DomainErrorCode = "InvalidProvince"
 	InvalidCity            DomainErrorCode = "InvalidCity"
 	CodeNotProvided        DomainErrorCode = "CodeNotProvided"
+	ProvinceNotProvided    DomainErrorCode = "ProvinceNotProvided"
 	InvalidPortConsistency DomainErrorCode = "InvalidPortConsistency"
 )
 

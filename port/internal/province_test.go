@@ -14,9 +14,19 @@ func TestNewProvince(t *testing.T) {
 	})
 
 	t.Run("Should return a Province with no errors", func(t *testing.T) {
-		country, err := NewProvince("Ajman")
-
+		province, err := NewProvince("Ajman")
 		require.NoError(t, err)
-		require.Equal(t, "Ajman", country.String())
+
+		s, _ := province.String()
+		require.Equal(t, "Ajman", s)
+	})
+
+	t.Run("Should return a ProvinceNotProvided error", func(t *testing.T) {
+		province := NoProvince()
+		_, err := province.String()
+
+		var expectedErr *DomainError
+		require.ErrorAs(t, err, &expectedErr)
+		require.Equal(t, ProvinceNotProvided, expectedErr.Code())
 	})
 }

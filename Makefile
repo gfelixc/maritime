@@ -5,3 +5,6 @@ init:
 	@echo "Running go mod download..."
 	@go mod download
 PHONY: init
+
+run:
+	go run cmd/port-domain/main.go

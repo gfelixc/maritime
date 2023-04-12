@@ -1,6 +1,6 @@
 package internal
 
-const notAvailable = "notAvailable"
+const codeNotProvided = "codeNotProvided"
 
 type Code struct {
 	value string
@@ -8,7 +8,7 @@ type Code struct {
 
 func NoCode() Code {
 	return Code{
-		value: notAvailable,
+		value: codeNotProvided,
 	}
 }
 
@@ -19,7 +19,7 @@ func NewCode(value string) Code {
 }
 
 func (vo Code) String() (string, error) {
-	if vo.value == notAvailable {
+	if vo.value == codeNotProvided {
 		return "", NewDomainError(
 			CodeNotProvided,
 			"code not provided",

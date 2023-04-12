@@ -23,7 +23,7 @@ type CreateUpdatePortCommand struct {
 	Regions              []string
 	CoordinatesLongitude float64
 	CoordinatesLatitude  float64
-	Province             string
+	Province             *string
 	Timezone             string
 	UNLOCS               []string
 	Code                 *string
@@ -77,9 +77,13 @@ func (uc CreateUpdatePort) Create(
 		return err
 	}
 
-	domainProvince, err := internal.NewProvince(command.Province)
-	if err != nil {
-		return err
+	domainProvince := internal.NoProvince()
+
+	if command.Province != nil {
+		domainProvince, err = internal.NewProvince(*command.Province)
+		if err != nil {
+			return err
+		}
 	}
 
 	domainTimezone, err := internal.NewTimezone(command.Timezone)
@@ -99,11 +103,9 @@ func (uc CreateUpdatePort) Create(
 
 	domainUnlocs := internal.NewUNLOCCollection(unlocsSlice...)
 
-	var domainCode internal.Code
+	domainCode := internal.NoCode()
 
-	if command.Code == nil {
-		domainCode = internal.NoCode()
-	} else {
+	if command.Code != nil {
 		domainCode = internal.NewCode(*command.Code)
 	}
 

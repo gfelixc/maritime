@@ -91,8 +91,9 @@ func TestCreatePort(t *testing.T) {
 		t.Run("InvalidProvince", func(t *testing.T) {
 			var expectedError *internal.DomainError
 
+			province := ""
 			test_case := stubCreatePortCommand()
-			test_case.Province = ""
+			test_case.Province = &province
 			err := usecase.Create(context.TODO(), test_case)
 
 			require.ErrorAs(t, err, &expectedError)
@@ -125,7 +126,8 @@ func TestCreatePort(t *testing.T) {
 }
 
 func stubCreatePortCommand() CreateUpdatePortCommand {
-	var code = "52000"
+	province := "Ajman"
+	code := "52000"
 
 	return CreateUpdatePortCommand{
 		"AEAJM",
@@ -136,7 +138,7 @@ func stubCreatePortCommand() CreateUpdatePortCommand {
 		[]string{},
 		55.5136433,
 		25.4052165,
-		"Ajman",
+		&province,
 		"Asia/Dubai",
 		[]string{
 			"AEAJM",

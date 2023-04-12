@@ -24,7 +24,7 @@ func TestPortsDataParser(t *testing.T) {
 		require.Equal(t, []string{}, port.Alias)
 		require.Equal(t, []string{}, port.Regions)
 		require.Equal(t, []float64{55.5136433, 25.4052165}, port.Coordinates)
-		require.Equal(t, "Ajman", port.Province)
+		require.Equal(t, "Ajman", *port.Province)
 		require.Equal(t, "Asia/Dubai", port.Timezone)
 		require.Equal(t, []string{"AEAJM"}, port.Unlocs)
 		require.Equal(t, "52000", *port.Code)

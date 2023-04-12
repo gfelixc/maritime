@@ -1,4 +1,4 @@
-# Before start
+## Before start
 
 ```shell
 make init
@@ -7,7 +7,15 @@ curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/insta
 GOBIN=/usr/local/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 ```
 
-# Assumptions
+## Running server
+
+`make run`
+
+## Example query
+
+`grpcurl -plaintext -d '{"filename":"ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
+
+## Assumptions
 
 - Application will evolve beyond a simple CRUD
 - UNLOC refers to the United Nations Code for Trade and Transport Locations (UN/LOCODE). Which is a [five-character code system](https://uncefact.unece.org/pages/viewpage.action?pageId=17830748) that provides a coded representation for the names of ports, airports, inland clearance depots, inland freight terminals and other transport related locations which are used for the movement of goods for trade. ([source](https://unece.org/trade/uncefact/unlocode)) 

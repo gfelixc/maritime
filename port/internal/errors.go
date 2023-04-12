@@ -14,6 +14,7 @@ const (
 	InvalidCity            DomainErrorCode = "InvalidCity"
 	CodeNotProvided        DomainErrorCode = "CodeNotProvided"
 	ProvinceNotProvided    DomainErrorCode = "ProvinceNotProvided"
+	TimezoneNotProvided    DomainErrorCode = "TimezoneNotProvided"
 	InvalidPortConsistency DomainErrorCode = "InvalidPortConsistency"
 )
 

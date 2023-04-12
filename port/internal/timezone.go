@@ -6,6 +6,10 @@ type Timezone struct {
 	value *time.Location
 }
 
+func NoTimezone() Timezone {
+	return Timezone{}
+}
+
 func NewTimezone(value string) (Timezone, error) {
 	if value == "" {
 		return Timezone{}, NewDomainError(
@@ -28,6 +32,12 @@ func NewTimezone(value string) (Timezone, error) {
 	}, nil
 }
 
-func (vo Timezone) String() string {
-	return vo.value.String()
+func (vo Timezone) String() (string, error) {
+	if vo.value == nil {
+		return "", NewDomainError(
+			TimezoneNotProvided,
+			"timezone not provided",
+		)
+	}
+	return vo.value.String(), nil
 }

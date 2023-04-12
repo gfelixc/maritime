@@ -22,9 +22,19 @@ func TestNewTimezone(t *testing.T) {
 	})
 
 	t.Run("Should return a Timezone with no errors", func(t *testing.T) {
-		country, err := NewTimezone("Asia/Dubai")
+		timezone, err := NewTimezone("Asia/Dubai")
 
 		require.NoError(t, err)
-		require.Equal(t, "Asia/Dubai", country.String())
+		s, _ := timezone.String()
+		require.Equal(t, "Asia/Dubai", s)
+	})
+
+	t.Run("Should return a TimezoneNotProvided error", func(t *testing.T) {
+		timezone := NoTimezone()
+
+		var expectedErr *DomainError
+		_, err := timezone.String()
+		require.ErrorAs(t, err, &expectedErr)
+		require.Equal(t, TimezoneNotProvided, expectedErr.Code())
 	})
 }

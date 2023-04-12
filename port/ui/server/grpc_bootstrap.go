@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"net"
-	"os/signal"
 
 	"github.com/gfelixc/maritime/port"
 	"github.com/gfelixc/maritime/port/internal/persistence"
@@ -14,16 +13,15 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-func BootGRPCServer() error {
-	rootCtx := context.Background()
-	signalCtx, _ := signal.NotifyContext(rootCtx)
+func BootGRPCServer(ctx context.Context) error {
+	logger, _ := zap.NewProduction()
+	logger.Info("Bootstrapping service")
 
 	server := grpc.NewServer()
 	reflection.Register(server)
 	repository := persistence.NewInMemoryRepository()
 	createUpdatePort := port.NewCreateUpdatePort(repository)
 	portsDataVolume := file.FileSystemVolume{}
-	logger, _ := zap.NewProduction()
 	grpcServer := NewPortDomainGRPCServer(createUpdatePort, portsDataVolume, logger)
 	portv1.RegisterPortDomainServiceServer(server, &grpcServer)
 
@@ -39,13 +37,14 @@ func BootGRPCServer() error {
 	go func() {
 		err = server.Serve(listener)
 		if err != nil {
-			logger.Error("error starting server", zap.Error(err))
+			logger.Error("Error starting grpc server", zap.Error(err))
 		}
 	}()
 
-	<-signalCtx.Done()
+	<-ctx.Done()
 
+	logger.Info("Shutting down server", zap.Error(err))
 	server.GracefulStop()
 
-	return signalCtx.Err()
+	return ctx.Err()
 }

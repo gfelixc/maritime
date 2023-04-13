@@ -1,9 +1,10 @@
 package file
 
 import (
+	"context"
 	"io"
 )
 
 type PortsDataVolume interface {
-	Open(string) (io.ReadCloser, error)
+	Open(context.Context, string) (io.ReadCloser, error)
 }

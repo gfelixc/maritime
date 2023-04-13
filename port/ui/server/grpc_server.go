@@ -33,7 +33,7 @@ func NewPortDomainGRPCServer(
 }
 
 func (p *PortDomainGRPCServer) CreateOrUpdateFromPortsDataFile(ctx context.Context, request *portv1.CreateOrUpdateFromPortsDataFileRequest) (response *portv1.CreateOrUpdateFromPortsDataFileResponse, err error) {
-	source, err := p.portsDataVolume.Open(request.Filename)
+	source, err := p.portsDataVolume.Open(nil, request.Filename)
 	if err != nil {
 		return nil, err
 	}

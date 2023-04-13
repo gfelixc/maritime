@@ -1,19 +1,17 @@
+# Maritime
+
 ## Before start
 
-```shell
-make init
-go install github.com/vektra/mockery/v2@v2.20.0
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.52.2
-GOBIN=/usr/local/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
-```
+Make sure you have all the dependencies installed in the expected version by running the command `make init`
 
-## Running server
+## Development commands
 
-`make run`
-
-## Example query
-
-`grpcurl -plaintext -d '{"filename":"ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
+- Run tests: `make tests`
+- Run lints: `make lints`
+- Run server: `make run`
+- Example query: `grpcurl -plaintext -d '{"filename":"ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
+- Generate mocks: `go generate ./...`
+- Generate proto stubs: `buf generate port`
 
 ## Assumptions
 

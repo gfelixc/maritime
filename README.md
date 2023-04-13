@@ -18,11 +18,12 @@ Make sure you have all the dependencies installed in the expected version by run
 - Run lints: `make lints`
 - Generate mocks: `make generate-mocks`
 - Generate proto stubs: `make generate-protos`
+- Docker build: `make docker-build`
 
 ## Running exercise
 
-- Run server: `make run`
-- Example query: `grpcurl -plaintext -d '{"filename":"ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
+- Run server locally: `make run` or dockerized: `make run-docker`
+- Example query: `grpcurl -plaintext -d '{"filename":"data/ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
 
 Execution should return an error as the assumption is that timezones are based on IANA timezone database and America/Argentina is not fully accurate to IANA.
 

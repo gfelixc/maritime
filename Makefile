@@ -6,6 +6,10 @@ GRPCURL_VERSION_REQUIRED=latest
 init: check-buf check-golangci-lint check-mockery check-grpcurl
 PHONY: init
 
+docker-build:
+	docker build . -t maritime
+PHONY: docker-build
+
 check-grpcurl:
 	@which grpcurl > /dev/null 2>&1 || make install-grpcurl
 PHONY: install-grpcurl
@@ -56,6 +60,11 @@ PHONY: install-mockery
 
 run:
 	go run cmd/port-domain/main.go
+PHONY: run
+
+run-docker:
+	make docker-build
+	docker run -i -t -v $$(pwd)/data:/data -p 8080:8080 --rm maritime
 PHONY: run
 
 lints:

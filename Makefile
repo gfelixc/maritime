@@ -1,9 +1,19 @@
-MOCKERY_VERSION_REQUIRED=v2.20.2
+MOCKERY_VERSION_REQUIRED=v2.20.0
 GOLANGCI_LINT_VERSION_REQUIRED=1.52.2
 BUF_VERSION_REQUIRED=1.17.0
+GRPCURL_VERSION_REQUIRED=latest
 
-init: check-buf check-golangci-lint check-mockery
+init: check-buf check-golangci-lint check-mockery check-grpcurl
 PHONY: init
+
+check-grpcurl:
+	@which grpcurl > /dev/null 2>&1 || make install-grpcurl
+PHONY: install-grpcurl
+
+install-grpcurl:
+	@echo "Installing grpcurl $(GRPCURL_VERSION_REQUIRED)"
+	@GOBIN=$$(go env GOPATH)/bin go install github.com/fullstorydev/grpcurl/cmd/grpcurl@v$(GRPCURL_VERSION_REQUIRED)
+PHONY: install-grpcurl
 
 check-buf:
 	@which buf > /dev/null 2>&1 || make install-buf
@@ -48,13 +58,9 @@ run:
 	go run cmd/port-domain/main.go
 PHONY: run
 
-lint:
+lints:
 	golangci-lint run --new-from-rev=HEAD~1
-PHONY: lint
-
-generate-protos:
-	buf generate port
-PHONY: protos
+PHONY: lints
 
 tests:
 	go test -count=1 ./...
@@ -62,3 +68,8 @@ PHONY: tests
 
 generate-mocks:
 	go generate ./...
+PHONY: generate-mocks
+
+generate-protos:
+	buf generate port
+PHONY: generate-protos

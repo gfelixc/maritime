@@ -8,10 +8,10 @@ Make sure you have all the dependencies installed in the expected version by run
 
 - Run tests: `make tests`
 - Run lints: `make lints`
+- Generate mocks: `make generate-mocks`
+- Generate proto stubs: `make generate-protos`
 - Run server: `make run`
 - Example query: `grpcurl -plaintext -d '{"filename":"ports.json"}' localhost:8080 port.v1.PortDomainService/CreateOrUpdateFromPortsDataFile`
-- Generate mocks: `go generate ./...`
-- Generate proto stubs: `buf generate port`
 
 ## Assumptions
 

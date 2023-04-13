@@ -66,6 +66,10 @@ tests:
 	go test -count=1 ./...
 PHONY: tests
 
+integration-tests:
+	go test -count=1 -tags integration ./...
+PHONY: tests
+
 generate-mocks:
 	go generate ./...
 PHONY: generate-mocks
